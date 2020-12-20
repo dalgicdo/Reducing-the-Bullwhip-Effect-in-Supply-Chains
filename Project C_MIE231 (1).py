@@ -44,7 +44,6 @@ prodList = [0,0]
 unfilled = 0
 unfilledList = []
 cum_unfilled = 0
-
 #--------------------------------
 
 guess_order = np.random.normal(15, 1, size = (3)) # the initial order for the first month
@@ -54,14 +53,13 @@ mean1 = meanCalc(guess_order)
 mean3 = rounder(guess_order)
 std1 = stdCalc(guess_order, mean1)
 
-
 # initial production and rounding 
 first_prod = np.random.normal(mean3, std1, size = (1))
 total_year_prod += rounder(first_prod)
 prodList.append(rounder(first_prod))
 orderList.append(rounder(np.random.normal(15,3, size = (1))))
 
-unfilled = rounder(order)
+unfilled = rounder(orderList) # fixer error
 cum_unfilled += unfilled
 unfilledList.append(unfilled) 
 #print("unfilled: ", unfilled)
@@ -88,7 +86,6 @@ for j in range(1,51):
     unfilledList.append(unfilled) 
     #print("unfilled: ", unfilled)
     
-
 prodList.pop(-1)
 prodList.pop(-1)
     
@@ -123,26 +120,5 @@ ax.plot(months, prodList, linewidth=2, label = "Store's Production")
 
 plt.legend(prop = {"size": 15}) # adding legend
 
-
-
-
 plt.show()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
